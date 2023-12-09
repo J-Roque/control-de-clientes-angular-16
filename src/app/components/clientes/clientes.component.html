@@ -1,0 +1,163 @@
+<!-- <app-header></app-header> -->
+
+<app-title-conponet [titulo]='miTitulo'></app-title-conponet>
+
+<section class="text-gray-600 body-font w-[100%]  relative ">
+
+    <div class="  w-full  lg:px-[80px] py-[20px] flex px-5 max-md:flex max-md:flex-col-reverse gap-5 ">
+
+        <div class="w-full max-sm:mt-5  ">
+            <div class="w-[100%]   py-2  flex items-center justify-around px-4
+             bg-[#48BB78] text-white">
+                Listado de clientes <i class="fa-solid fa-people-line ml-3"></i>
+                <button class=" ml-auto text-white bg-[#48BB78] border-0 border-cyan-600
+                py-2 px-4 focus:outline-none hover:bg-green-600 rounded" (click)="showModal()">
+                    <i class="fa-solid fa-plus"></i>
+                    Agregar
+                </button>
+            </div>
+            <div class="w-full overflow-auto">
+                <table class="  table-auto w-full text-left whitespace-no-wrap ">
+                    <thead>
+                        <tr>
+                            <th
+                                class="p-4 py-3  title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">
+                                N°</th>
+                            <th
+                                class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">
+                                Nombre</th>
+                            <th
+                                class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">
+                                Apellido</th>
+                            <th
+                                class="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">
+                                Saldo</th>
+                            <th
+                                class=" w-[250px] px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let cliente of clientes; let i = index">
+                            <td class="pl-4 py-3">{{i+1}}</td>
+                            <td class="px-4 py-3">{{cliente.nombre}}</td>
+                            <td class="px-4 py-3">{{cliente.apellido}}</td>
+                            <td class="px-4 py-3">{{cliente.saldo | currency:'PE':'S/' }} </td>
+                            <td class="px-4 py-3 flex items-end min-sm:px-2 min-sm:py-2 ">
+                                <a routerLink="/cliente/editar/{{cliente.id}}" class=" ml-auto text-white bg-[#48BB78] border-0 py-2 px-6 focus:outline-none
+                                     hover:bg-green-600 rounded flex items-center content-center
+                                      ">
+                                    <i class="fa-regular fa-pen-to-square"></i>
+                                    <p class="max-sm:hidden">Editar</p>
+                                </a>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="   max-md:flex max-md:flex-wrap max-md:content-around max-md:items-center  ">
+            <div
+                class="  max-sm:w-full  w-[245px] border-2 border-gray-200 px-4 py-6 rounded-lg bg-[#48BB78]  text-center">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    class="text-[#fff] w-12 h-12 mb-3 inline-block" viewBox="0 0 24 24">
+                    <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 00-3-3.87m-4-12a4 4 0 010 7.75"></path>
+                </svg>
+                <h2 class="title-font font-bold text-3xl  text-white">{{clientes ? clientes.length : 0}}</h2>
+                <p class="leading-relaxed text-white">Total Clientes </p>
+            </div>
+            <div
+                class=" max-sm:w-full  w-[245px]  border-2 border-gray-200 px-4 py-6 rounded-lg bg-[#F56565]  text-center">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    class="text-white w-12 h-12 mb-3 inline-block" viewBox="0 0 24 24">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                <h2 class="title-font font-bold text-3xl text-white ">{{getSaldoTotal() | currency:'MNX':' S/ '}}</h2>
+                <p class="leading-relaxed text-white   ">Saldo Total</p>
+            </div>
+            <div
+                class=" max-sm:w-full   w-[245px] border-2 border-gray-200 px-4 py-6 rounded-lg bg-sky-400 text-center">
+                <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    class="text-white w-12 h-12 mb-3 inline-block" viewBox="0 0 24 24">
+                    <path d="M3 18v-6a9 9 0 0118 0v6"></path>
+                    <path
+                        d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3zM3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3z">
+                    </path>
+                </svg>
+                <h2 class="title-font text-3xl text-white font-bold">{{'4000 '| currency:'PE':'S/' }}</h2>
+                <p class="leading-relaxed text-white">Gasto Mensual</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+<!-- #clienteForm="ngForm" (ngSubmit)="agregar()" -->
+<!-- *ngIf="formLogin" -->
+<div class=" w-[100%]  bg-[#0000006b] flex  content-center items-center absolute top-0  bottom-0 {{modal}}">
+    <form [formGroup]="formLogin" (ngSubmit)="guardar(formLogin)" class="  m-auto lg:w-1/3 md:w-1/2
+     bg-white rounded-[5PX]">
+        <div class="relative mb-4 bg-[#48BB78] flex items-center justify-between  px-3 py-3  rounded-[5px]">
+            <label for="name" class="leading-7 text-sm text-white">Agregar Clientes</label>
+            <button type="button" class="text-teal-50  " #botonCerrar (click)="showModal()"><i
+                    class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="relative mb-4 px-3  ">
+            <label for="name" class="leading-7 text-sm text-gray-600   ">Nombre </label>
+            <input type="text" formControlName="nombre" class="w-full bg-white rounded border
+            border-gray-300 focus:border-black focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 
+                 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                [class.border-red-400]="nombreNoValido">
+            <label *ngIf="nombreNoValido" for="name" class="leading-7 text-sm text-red-400">Ingrese el nombre con el
+                minimo de 6 letras </label>
+
+        </div>
+        <div class="relative mb-4 px-3">
+            <label for="lastName" class="leading-7 text-sm text-gray-600">Apellido</label>
+            <input type="text" formControlName="apellido" [class.border-red-400]="apellidoNoValido" class="w-full bg-white rounded border border-gray-300 focus:border-black
+            focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 
+            px-3 leading-8 transition-colors duration-200 ease-in-out">
+            <label *ngIf="apellidoNoValido" for="name" class="leading-7 text-sm text-red-400 ">Ingrese el apellido con
+                el minimo de 6 letras</label>
+
+
+        </div>
+        <div class="relative mb-4 px-3">
+            <label for="name" class="leading-7 text-sm text-gray-600">Saldo</label>
+            <input type="number"  required formControlName="saldo" [class.border-red-400]="saldoNoValido"
+                class="w-full bg-white rounded border border-gray-300 focus:border-black focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+            <label *ngIf="saldoNoValido" for="name" class="leading-7 text-sm text-red-400 ">Ingrese numeros
+                validos</label>
+
+        </div>
+        <div class="relative mb-4 px-3">
+            <label for="email" class="leading-7 text-sm text-gray-600">Email</label>
+            <input type="email" formControlName="email" [class.border-red-400]="emailNoValido"
+                class="w-full bg-white rounded border border-gray-300 focus:border-black focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+
+            <label *ngIf="emailNoValido" for="email" class="leading-7 text-sm text-red-400">Ingrese un email
+                valido</label>
+            <!-- 
+            <label for="nombre" class="leading-7 text-sm
+                text-gray-600">Valido:{{formLogin.valid}}
+                <br>
+                status:{{formLogin.status}}
+                <br>
+                {{formLogin.value | json}}
+                [disabled]="formLogin.valid"
+            </label> -->
+        </div>
+
+
+        <div class=" w-full relative mb-4 px-3 flex justify-end">
+            <button class="text-white bg-[#48BB78] 
+            border-0 py-2 px-6 focus:outline-none hover:bg-green-600
+            rounded text-lg  " >Agregar</button>
+        </div>
+
+    </form>
+
+</div>

@@ -1,0 +1,33 @@
+<app-title-conponet [titulo]='miTitulo'></app-title-conponet>
+<div class=" w-full flex  justify-around content-center  gap-5  sm:w-full p-[50px]">
+    <div  class="  m-auto lg:w-[70%] md:w-[90%] sm:w-full  border-red-500 
+     bg-white rounded-[5px]">
+        <div class="  bg-[#48BB78] flex items-center justify-between   content-center px-3 p-3  ">
+            <button for="name" class=" leading-7 text-sm text-white flex items-center gap-2
+             hover:bg-green-600  py-2 px-2 rounded-[3px]" routerLink=""  > <i
+                    class="fa-solid fa-arrow-right fa-rotate-180 hover:text-gray-600"></i>
+                     Regresar</button>
+            <div class="flex justify-between">
+                <button type="submit"  (click)="guardar()" class="text-teal-50   hover:bg-green-600 py-2 px-2 rounded-[3px]"> <i
+                        class="fa-regular fa-floppy-disk"></i>
+                         Guardar Cambio</button>
+            </div>
+        </div>
+        <div class="relative  bg-gray-100 flex items-center justify-between   px-3 py-3   ">
+            <label for="name" class=" leading-8 text-sm  text-gray-600 font-bold ">Permisos | Rol</label>
+        </div>
+        
+        <div class="relative  px-3  border  ">
+            <label for="name" class="leading-7 text-sm text-blue-400 ">Permitir Registro de Usuarios </label>
+            <br>
+            <input 
+            type="checkbox" 
+            [(ngModel)]="permitirRegistro"
+            [checked]="permitirRegistro"
+            class="  rounded border 
+            border-gray-300  focus:ring-indigo-200 outline-none py-1 px-3 ml-2 ">
+            {{permitirRegistro?'Si':'No'}}
+    
+        </div>
+    </div>
+</div>

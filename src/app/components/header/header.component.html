@@ -1,0 +1,42 @@
+<header class=" body-font bg-[#282828] text-[#fff]">
+    <div class="container mx-auto flex flex-wrap p-1 flex-col md:flex-row items-center">
+        <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
+                stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
+                viewBox="0 0 24 24">
+                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+            </svg>
+            <span class="ml-3 text-xl text-white">Control  Clientes </span>
+        </a>
+        <nav *ngIf="!isLoggedIn && permitirRegistro" class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+            <a  routerLink="/login"  class="mr-5 hover:text-[#c1b3b3]  ">Login</a>
+            <a   routerLink="/registro"   class="mr-5 hover:text-[#c1b3b3]  ">Registro</a>
+        </nav>
+        <nav *ngIf="isLoggedIn " class="md:ml-auto flex flex-wrap items-center text-base justify-center">
+            <a routerLink="/" class="mr-5 hover:text-[#c1b3b3]  ">Inicio</a>
+            <a class="px-5  flex  cursor-pointer flex-col relative">
+                <div class="hover:text-[#dfcccc]" (click)="mostrarmodal()">{{loggedInUser}}
+                    <i class="fa-solid fa-chevron-down ml-1"></i>
+                </div>
+                <div class=" z-30 border-2 border-gray-200 {{modalListSettings}}  bg-white  absolute 
+                    top-[35px] left-0  w-[100%]">
+                    <a routerLink="/configuracion"
+                        class=" py-2 pl-4 hover:text-[#c1b3b3]  text-black flex items-center   ">
+                        <i class=" px-1 fa-solid fa-gear"></i>
+                        Configuracion
+                    </a>
+                    <a class=" py-2 pl-4 hover:text-[#c1b3b3]  text-black flex items-center   ">
+                        <i class=" px-1 fa-solid fa-gear"> </i>
+                        Perfil
+                    </a>
+                    <a (click)="logout()" class="  py-2 pl-4 hover:text-[#c1b3b3]  text-black flex items-center   ">
+                        <i class=" px-1 fa-solid fa-right-from-bracket "></i>
+                        Salir
+                    </a>
+                </div>
+            </a>
+            <a (click)="logout()" class="mx-5 hover:text-[#c1b3b3] cursor-pointer">
+                <i class="fa-solid fa-right-from-bracket  hover:text-indigo-500 font-bold "></i>
+            </a>
+        </nav>
+    </div>
